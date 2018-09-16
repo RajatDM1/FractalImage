@@ -17,9 +17,12 @@
 using namespace std;
 using namespace fractal;
 
-int main(int argc, char** argv) {
+int main() {
+    
     int const WIDTH = 800;
     int const HEIGHT = 600;
+    ZoomList zoomList(WIDTH,HEIGHT);
+    zoomList.add(zoom(WIDTH/2,HEIGHT/2,4.0/WIDTH));
     Bitmap bitmap(WIDTH, HEIGHT);
     double min = 999999;
     double max = -999999;
