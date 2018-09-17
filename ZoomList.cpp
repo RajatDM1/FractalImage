@@ -7,16 +7,21 @@ namespace fractal{
 ZoomList::ZoomList(int width, int height):m_height(height), m_width(width){
 }
 
-void ZoomList::add(const zoom& zoo){
-    zooms.push_back(zoo);
-    m_xCenter  +=(zoo.x - m_width/2)*m_scale;//how far from center point has user clicked
-    m_yCenter  +=(zoo.y - m_width/2)*m_scale;
-    
-    m_scale = m_scale*zoo.scale;//new scale
+void ZoomList::add(const Zoom& zoom){
+    zooms.push_back(zoom);
+    m_xCenter  +=(zoom.x - m_width/2)*m_scale;//how far from center point has user clicked
+    m_yCenter  +=(zoom.y - m_height/2)*m_scale;
+    cout<<m_scale<<endl;
+    cout<<zoom.scale<<endl;
+    m_scale *= zoom.scale;//new scale
+    cout<<m_xCenter<<","<<m_yCenter<<","<<m_scale<<endl;
 }
 
 pair<double,double> ZoomList::doZoom(int x,int y){
-    return pair<double,double>(0,0);
+    double xFractal = (x-m_width/2)*m_scale+m_xCenter;//we can apply scale only about the center
+    double yFractal = (y-m_height/2)*m_scale+m_yCenter;
+    
+    return pair<double,double>(xFractal,yFractal);
 }
 //ZoomList::ZoomList(const ZoomList& orig) {
 //}

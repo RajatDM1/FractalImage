@@ -14,10 +14,10 @@ private:
     double m_scale{1.0};
     int m_height{0};
     int m_width{0};
-    vector <zoom> zooms;
+    vector <Zoom> zooms;
 public:
     ZoomList(int width, int height);
-    void add(const zoom& zoo);
+    void add(const Zoom& zoom);
     pair<double,double> doZoom(int x,int y);
 };
 }

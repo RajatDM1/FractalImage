@@ -22,7 +22,7 @@ int main() {
     int const WIDTH = 800;
     int const HEIGHT = 600;
     ZoomList zoomList(WIDTH,HEIGHT);
-    zoomList.add(zoom(WIDTH/2,HEIGHT/2,4.0/WIDTH));
+    zoomList.add(Zoom(WIDTH/2,HEIGHT/2,4.0/WIDTH));
     Bitmap bitmap(WIDTH, HEIGHT);
     double min = 999999;
     double max = -999999;
@@ -34,18 +34,14 @@ int main() {
         for(int x=0;x<WIDTH;x++)
         {
 //            bitmap.setPixel(x,y, 255,255,255);
-            double xfractal = (x-WIDTH/2-200)*(2.0/HEIGHT);//as values of xfractal should be between -1 to 1
-            double yfractal = (y-HEIGHT/2)*(2.0/HEIGHT);
+            pair<double,double> coords = zoomList.doZoom(x,y);
+//            double xfractal = (x-WIDTH/2-200)*(2.0/HEIGHT);//as values of xfractal should be between -1 to 1
+//            double yfractal = (y-HEIGHT/2)*(2.0/HEIGHT);
             
-            int iterations = Mandelbrot::getIterations(xfractal,yfractal);
+            int iterations = Mandelbrot::getIterations(coords.first,coords.second);
             frac[y*WIDTH+x] = iterations;
             if(iterations!= Mandelbrot::MAX_ITERATIONS)
                 histogram[iterations]++;
-//            uint8_t color = (uint8_t)(256*(double)iterations/Mandelbrot::MAX_ITERATIONS);
-//            color = color*color*color;
-//            bitmap.setPixel(x,y,0,color,0);
-//            if(color < min ) min = color;
-//            if(color > max) max = color;
         }
     }
     int total = 0;
@@ -78,7 +74,7 @@ int main() {
         }
     }
     
-    cout<<min<<","<<max<<endl;
+//    cout<<min<<","<<max<<endl;
     bitmap.write("test.bmp");
     cout<<"Finished"<<endl;
     return 0;

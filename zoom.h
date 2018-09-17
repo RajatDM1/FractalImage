@@ -4,10 +4,10 @@
 #define ZOOM_H
 
 namespace fractal{
-struct zoom {
+struct Zoom {
     int x{0}; int y{0};
     double scale{0};
-    zoom(int x,int y, int scale):x(x),y(y),scale(scale){};
+    Zoom(int x,int y, double scale):x(x),y(y),scale(scale){};
 private:
 
 }; 
