@@ -2,7 +2,15 @@
 #include "FractalCreator.h"
 
 namespace fractal{
-    
+    void FractalCreator::run(string name) {
+//         FractalCreator fractalCreator(800,600);
+    addZoom(Zoom(295,m_height-202,0.1));
+    addZoom(Zoom(312,m_height-304,1.0));
+    calculateIterations();
+    calculateTotalIterations();
+    drawFractal();
+    writeBitmap("test.bmp");
+    }
 FractalCreator::FractalCreator(int width, int height):
             m_width(width), m_height(height), m_histogram
                     (new int[Mandelbrot::MAX_ITERATIONS]{0}),m_fractal

@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Bitmap.o \
 	${OBJECTDIR}/FractalCreator.o \
 	${OBJECTDIR}/Mandelbrot.o \
+	${OBJECTDIR}/RGB.o \
 	${OBJECTDIR}/ZoomList.o \
 	${OBJECTDIR}/main.o
 
@@ -80,6 +81,11 @@ ${OBJECTDIR}/Mandelbrot.o: Mandelbrot.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mandelbrot.o Mandelbrot.cpp
+
+${OBJECTDIR}/RGB.o: RGB.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RGB.o RGB.cpp
 
 ${OBJECTDIR}/ZoomList.o: ZoomList.cpp
 	${MKDIR} -p ${OBJECTDIR}
